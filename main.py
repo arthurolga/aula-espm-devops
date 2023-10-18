@@ -6,13 +6,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String
+#  Importa o os
+import os
 
 
 # Instancia o FastAPI
 app = FastAPI()
 
-# Cria uma engine para o banco de dados
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/postgres"
+SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
+
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # Cria uma sessão para o banco de dados
